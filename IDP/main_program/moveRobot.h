@@ -15,6 +15,8 @@ extern bool mine; extern bool red;
 extern bool clockwise_180; extern bool north; extern bool clockwise_90;
 
 // function prototypes
+//simple movements
+void updateBackDistance();
 void goForward(int run_time=1);
 void goBackward(int run_time=1);
 void rotation180();

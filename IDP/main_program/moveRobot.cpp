@@ -29,11 +29,13 @@ void rotation180(){
   if (clockwise_180 == true){
     Serial.print("rotating clockwise");
     leftMotor->run(FORWARD); leftMotor->setSpeed(50);
+    clockwise_180 == false;
     delay(500); //set motor run time
   }
   else if (clockwise_180 == false){
     Serial.print("rotating anticlockwise");
     rightMotor->run(FORWARD); rightMotor->setSpeed(50);
+    clockwise_180 == true;
     delay(500); //set motor run time
   }
 }

@@ -5,13 +5,13 @@ int time_clock = 0; float side_distance = 0; float back_distance = 0;
 bool mine=false; bool red=false;
 bool clockwise_180=true; bool north=true; bool clockwise_90=false;
 
-// void moveForward(){
-//  while (full_depth - back_distance < tolerance){
-//    if (mine == false){goForward();}
-//    else if (red == false){delay(1000); goForward();}
-//    else (delay(1000); delay(1000); goForward();)
-//  }
-// }
+void moveForward(){
+ while (FULL_DEPTH - back_distance < TOLERANCE){
+   if (mine == false){goForward();}
+   else if (red == false){delay(1000); goForward();}
+   else (delay(1000); delay(1000); goForward();)
+ }
+}
 
 void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
