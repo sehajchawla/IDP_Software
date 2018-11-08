@@ -5,9 +5,9 @@
 #include <Adafruit_MotorShield.h>
 
 // declare constant
-#define TOLERANCE 5;
-#define FULL_DEPTH 100; //cm
-#define FULL_WIDTH 100; //cm
+#define TOLERANCE 5
+#define FULL_DEPTH 100 //cm
+#define FULL_WIDTH 100 //cm
 
 // declare global variables
 extern int time_clock; extern float side_distance; extern float back_distance;
