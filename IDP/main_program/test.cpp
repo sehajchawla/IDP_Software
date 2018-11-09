@@ -1,10 +1,7 @@
 #include "moveRobot.h"
 
-void testRotation(){
-  if (time_clock < 1){rotation180();time_clock += 1;}
-  else {stopMotor();}
-  Serial.println(time_clock);
-}
+// expect to rotate 180 degree, adjust motor run time if not
+void testRotation(){rotation180(); stopMotor();}
 
 void testForward(){
   if (time_clock < 5){goForward();time_clock += 1;}
@@ -19,3 +16,5 @@ void testFeedbackForward(){
   else {stopMotor();}
   Serial.println(time_clock);
 }
+
+void testleftforward(){}

@@ -24,7 +24,7 @@ byte classifyRed(int sensorValue){
 }
 
 
-void classifyMine(){
+void confirmMine(){
   int val1 = analogRead(A0); int val2 = analogRead(A1);
   int val3 = analogRead(A2); int val4 = analogRead(A3);
   int val5 = analogRead(A4);

@@ -18,8 +18,9 @@ void setup() {
 }
 
 void loop() {
-  testForward();
-  testRotation();
-  testFeedbackForward();
-  complexForward();
+  // testForward();
+  // testRotation();
+  // testFeedbackForward();
+  // complexForward();
+  grandTrip();
 }

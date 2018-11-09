@@ -42,7 +42,7 @@ void startBlink(); //used in setup() in main_program
 void Blink(); //only blink the LED
 byte classifyMine(int sensorValue); //for classifyMine()
 byte classifyRed(int sensorValue); //for classifyMine()
-void classifyMine(); //vital algorithm for complexForward()
+void confirmMine(); //vital algorithm for complexForward()
 
 
 
@@ -55,17 +55,23 @@ void feedbackDiffSpeed();//this function will set the diff_speed, which is cruci
 //refresh rate 0.1s due to updateDiffDist()
 
 void updateBackDistance(); //get distance from back ultrasond sensor
+void getCoordinate();
 void reportCoordinate();
 
 
 
 //complex movements
 void feedbackForward(); //refresh rate 0.2s, moving forward with feedback
+//this code will not stop the motor
+
 void runtimeForward(byte run_time); //run feedForward() for run_time * 0.2s
 void yellowReset(); //procedures after detect yellow mine
 void dodgeRed();
 void redReset(); //procedures after detecting red mine
-void complexForward(); 
+void complexForward();
+void returnBase();
+void grandTrip();
+
 
 
 

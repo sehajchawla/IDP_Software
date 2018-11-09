@@ -74,18 +74,22 @@ void updateBackDistance(){
   back_distance = distacne_measure;
 }
 
-void reportCoordinate(){
+void getCoordinate(){
   side_distance1 = getDistance();
   side_distance2 = getDistance();
   updateBackDistance();
   if (north == true){
-    x_coordinate = back_distance;
-    y_coordinate = side_distance1;
+    y_coordinate = back_distance;
+    x_coordinate = side_distance1;
   }
   else if (north == false){
     y_coordinate = FULL_DEPTH - back_distance;
     x_coordinate = FULL_WIDTH - side_distance1;
 }
+}
+
+void reportCoordinate(){
+  getCoordinate();
   Serial.print("x_coordinate: "); Serial.println(x_coordinate);
   Serial.print("y_coordinate: "); Serial.println(y_coordinate);
 }
