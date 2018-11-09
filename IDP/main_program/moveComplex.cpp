@@ -1,24 +1,39 @@
 #include "moveRobot.h"
 
-const int trig = 12;
-const int echo = 11;
+//refresh rate 0.2s, each function has 0.1s refresh rate
+void feedbackForward(){feedbackDiffSpeed(); feedForward();}
 
-void updateBackdistance(){
-  long duration;
+//last for 0.2*run_time
+void runtimeForward(byte run_time){
+  for (byte i = 1, i < run_time, i++){feedbackForward();}
+}
 
-  pinMode(trig, OUTPUT);
-  digitalWrite(trig, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trig, HIGH);
-  delayMicroseconds(5);
-  digitalWrite(trig, LOW);
+void yellowReset() {runtimeForward(5); mine = false;}
 
-  pinMode(echo, INPUT);
-  duration = pulseIn(echo, HIGH);
-  back_distance = duration / 29 / 2;
+void dodgeRed(){
+  if (north == true){
+    leftbackward90(); runtimeForward(5); leftforward90();
+    runtimeForward(10);
+    leftforward90(); rightforward90();
+  }
+  else if (north == false){
+    rightbackward90(); runtimeForward(5); rightforward90();
+    runtimeForward(10); //note 10 is crucial here
+    rightforward90(); leftforward90();
+  }
+}
 
-  Serial.print(back_distance);
-  Serial.print("cm");
-  Serial.println();
-  delay(50);
+void redReset(){
+  delay(1000); Blink(); reportCoordinate(); delay(2000);
+  dodgeRed();
+  mine = false; red = false;
+}
+
+
+void complexForward(){
+while (FULL_DEPTH - back_distance < TOLERANCE){
+  if (mine == false){classifyMine(); feedbackForward();} //no mine
+  else if (mine == true && red == falsefeedbackForward();){delay(3000); yellowReset();} //yellow mine
+  else if (mine == true && red == true){redReset();} //red mine
+}
 }

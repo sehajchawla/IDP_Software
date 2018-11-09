@@ -11,47 +11,82 @@ Adafruit_DCMotor *rightMotor = AFMS.getMotor(3);
 Adafruit_DCMotor *leftMotor = AFMS.getMotor(4);
 
 // moving forward algorithm
-void goForward(int run_time=1){
+void goForward(){
   Serial.print("moving forward");
   leftMotor->run(FORWARD); rightMotor->run(FORWARD);
   leftMotor->setSpeed(200);  rightMotor->setSpeed(200);
-  delay(run_time*1000);
+  delay(1000);
 }
 
-void goBackward(int run_time=1){
+// moving forward algorithm for the feedback control
+// need to be used together with updateDiffDist() in navigation
+//refresh rate 0.1s
+void feedForward(){
+  Serial.print("moving forward with feedback");
+  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+  delay(100);
+}
+
+// simple moving BACKWARD algorithm
+void goBackward(){
   Serial.print("reversing");
   leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
-  leftMotor->setSpeed(50);  rightMotor->setSpeed(50);
-  delay(run_time*1000);
+  leftMotor->setSpeed(100);  rightMotor->setSpeed(100);
+  delay(1000);
 }
 
 void rotation180(){
-  if (clockwise_180 == true){
-    Serial.print("rotating clockwise");
-    leftMotor->run(FORWARD); leftMotor->setSpeed(50);
-    clockwise_180 == false;
+  if (north == true){
+    Serial.print("rotating clockwise180");
+    leftMotor->run(FORWARD); rightMotor->run(RELEASE);
+    leftMotor->setSpeed(50);
     delay(500); //set motor run time
+    leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+    north == false; //set the parameter for the next run
   }
-  else if (clockwise_180 == false){
-    Serial.print("rotating anticlockwise");
-    rightMotor->run(FORWARD); rightMotor->setSpeed(50);
-    clockwise_180 == true;
+  else if (north == false){
+    Serial.print("rotating anticlockwise180");
+    rightMotor->run(FORWARD); leftMotor->run(RELEASE);
+    rightMotor->setSpeed(50);
     delay(500); //set motor run time
+    leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+    north == true;
   }
 }
 
-void rotation90(){
-  if (clockwise_90 == true){
-    Serial.print("rotating clockwise");
-    leftMotor->run(FORWARD); leftMotor->setSpeed(50);
-    delay(500); //set motor run time
-  }
-  else if (clockwise_90 == false){
-    Serial.print("rotating anticlockwise");
-    rightMotor->run(FORWARD); rightMotor->setSpeed(50);
-    delay(500); //set motor run time
-  }
+void leftforward90(){
+  Serial.print("left wheel advancing 90");
+  leftMotor->run(FORWARD); rightMotor->run(RELEASE);
+  leftMotor->setSpeed(50);
+  delay(250); //set motor run time
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
 }
+
+void rightforward90(){
+  Serial.print("right wheel advancing 90");
+  rightMotor->run(FORWARD); leftMotor->run(RELEASE);
+  rightMotor->setSpeed(50);
+  delay(250); //set motor run time
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+}
+
+void leftbackward90(){
+  Serial.print("left wheel reversing 90");
+  leftMotor->run(BACKWARD); rightMotor->run(RELEASE);
+  leftMotor->setSpeed(50);
+  delay(250); //set motor run time
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+}
+
+void rightbackward90(){
+  Serial.print("right wheel advancing 90");
+  rightMotor->run(BACKWARD); leftMotor->run(RELEASE);
+  rightMotor->setSpeed(50);
+  delay(250); //set motor run time
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+}
+
 
 //stop the motor
 void stopMotor(){
