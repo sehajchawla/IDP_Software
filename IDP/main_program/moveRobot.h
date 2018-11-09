@@ -70,6 +70,7 @@ void dodgeRed();
 void redReset(); //procedures after detecting red mine
 void complexForward();
 void returnBase();
+
 void grandTrip();
 
 
