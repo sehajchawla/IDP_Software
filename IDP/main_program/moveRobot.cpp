@@ -25,7 +25,7 @@ void feedForward(){
   Serial.print("moving forward with feedback");
   leftMotor->run(FORWARD); rightMotor->run(FORWARD);
   leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
-  delay(100);
+  delay(1);
 }
 
 // simple moving BACKWARD algorithm

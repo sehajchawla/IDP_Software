@@ -30,7 +30,7 @@ int getDistance(){
 void updateDiffDist(){
   int absDifference; int different_speed;
   side_distance1 = getDistance();
-  delay(100); //set the dt
+  delay(200); //set the dt
   side_distance2 = getDistance();
   diff_distance = side_distance2 - side_distance1;
 }
