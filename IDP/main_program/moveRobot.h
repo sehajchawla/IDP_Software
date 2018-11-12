@@ -50,7 +50,7 @@ void confirmMine(); //vital algorithm for complexForward()
 int absValue(int val); //return the absolute value
 int getDistance(); // get distance from the side ultrasound sensor
 void updateDiffDist(); //return change of side distance
-void feedbackSetup(int dist, int kp); //proportional control; speed = kp * diff_distance
+void feedbackSetup(int kp); //proportional control; speed = kp * diff_distance
 void feedbackDiffSpeed();//this function will set the diff_speed, which is crucial for feedForward function
 //refresh rate 0.1s due to updateDiffDist()
 
@@ -74,11 +74,24 @@ void returnBase();
 void grandTrip();
 
 
+//navigation test
+void testabsValue(); //purely software
+void testgetDistance();
+void testupdateDiffDist();
+void testfeedbackSetup(); //purely software
+void testcoordinate();
+
+//movement test
+void testleftwheel(); void testrightwheel();
+void testmove();
+void testfeedForward();
+void quicktestfeedforward();
+
+//detection test
+void testclassifyMine();
+void testclassifyRed();
+void testconfirmMine();
 
 
-//test
-void testRotation();
-void testForward();
-void testFeedbackForward();
 
 #endif

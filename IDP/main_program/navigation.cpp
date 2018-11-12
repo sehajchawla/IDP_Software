@@ -10,9 +10,9 @@ int absValue(int val){
 
 // get distance from the side ultrasound sensor
 int getDistance(){
-  long duration; int distacne_measure;
-  const byte trig = 0;
-  const byte echo = 1;
+  long duration; int distance_measure;
+  const byte trig = 12;
+  const byte echo = 11;
 
   pinMode(trig, OUTPUT);
   digitalWrite(trig, LOW);
@@ -23,19 +23,18 @@ int getDistance(){
 
   pinMode(echo, INPUT);
   duration = pulseIn(echo, HIGH);
-  distacne_measure = duration / 29 / 2;
-  return distacne_measure;
+  distance_measure = duration / 29 / 2;
+  return distance_measure;
 }
 
 void updateDiffDist(){
-  int absDifference; int different_speed;
   side_distance1 = getDistance();
   delay(200); //set the dt
   side_distance2 = getDistance();
   diff_distance = side_distance2 - side_distance1;
 }
 
-void feedbackSetup(int dist, int kp){
+void feedbackSetup(int kp){
   if (absValue(diff_distance) < 0.05 * side_distance1){diff_speed=0;}
   else if (absValue(diff_distance) < 0.7 * side_distance1){
     int speed_temp; int abs_speed;
@@ -49,11 +48,10 @@ void feedbackSetup(int dist, int kp){
 //this function will set the diff_speed, which is crucial for feedForward function
 //refresh rate 0.1s due to updateDiffDist()
 void feedbackDiffSpeed(){
-  updateDiffDist();
-  if (side_distance1 < 40){feedbackSetup(side_distance1, 10);}
-  else if (side_distance1 < 80){feedbackSetup(side_distance1, 8);}
-  else if (side_distance1 < 120){feedbackSetup(side_distance1, 6);}
-  else {feedbackSetup(side_distance1, 4);}
+  if (side_distance1 < 40){feedbackSetup(10);}
+  else if (side_distance1 < 80){feedbackSetup(8);}
+  else if (side_distance1 < 120){feedbackSetup(6);}
+  else {feedbackSetup(4);}
 }
 
 void updateBackDistance(){

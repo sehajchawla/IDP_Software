@@ -19,8 +19,9 @@ byte classifyMine(int sensorValue){
 }
 
 byte classifyRed(int sensorValue){
-  if (sensorValue > 100 && sensorValue < 200){return true;}
-  else if (sensorValue > 300 && sensorValue < 400){return false;}
+  if (sensorValue > 100 && sensorValue < 200){return 1;}
+  else if (sensorValue > 300 && sensorValue < 400){return 0;}
+  else {return 0;}
 }
 
 

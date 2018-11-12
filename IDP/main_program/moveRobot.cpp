@@ -23,6 +23,7 @@ void goForward(){
 //refresh rate 0.1s
 void feedForward(){
   Serial.print("moving forward with feedback");
+  // leftMotor->run(RELEASE); rightMotor->run(RELEASE); //this line is used to refresh the motor
   leftMotor->run(FORWARD); rightMotor->run(FORWARD);
   leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
   delay(1);
@@ -88,11 +89,10 @@ void rightbackward90(){
 }
 
 
-//stop the motor
+//stop the motor for good
 void stopMotor(){
   Serial.print("stop");
-  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
-  delay(1000);
+  while (true) {leftMotor->run(RELEASE); rightMotor->run(RELEASE);}
 }
 
 void startMotor(){

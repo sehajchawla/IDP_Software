@@ -18,9 +18,22 @@ void setup() {
 }
 
 void loop() {
-  // testForward();
-  // testRotation();
-  // testFeedbackForward();
-  // complexForward();
-  grandTrip();
+  //navigation test
+  void testabsValue(); //purely software
+  void testgetDistance();
+  void testupdateDiffDist();
+  void testfeedbackSetup(); //purely software
+  void testcoordinate();
+
+  //movement test
+  void testleftwheel();
+  void testrightwheel();
+  void testmove();
+  void testfeedForward();
+  void quicktestfeedforward();
+
+  //detection test
+  void testclassifyMine();
+  void testclassifyRed();
+  void testconfirmMine();
 }
