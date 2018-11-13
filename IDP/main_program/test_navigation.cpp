@@ -34,7 +34,7 @@ void testfeedbackSetup(){
 }
 
 void testcoordinate(){
-  Serial.println("This test will only work with two sensors functioning")
+  Serial.println("This test will only work with two sensors functioning");
   side_distance1 = getDistance(); updateBackDistance();
   Serial.println("This is the side distance"); Serial.println(side_distance1);
   Serial.println("This is the back distacne"); Serial.println(back_distance);

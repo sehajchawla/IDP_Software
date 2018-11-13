@@ -13,7 +13,7 @@ void testclassifyRed(){
   Serial.println("it should return 1; saying a red is detected");
   Serial.println(classifyRed(150));
   Serial.println("should be 0");
-  Serial.println(classifyRed(350))
+  Serial.println(classifyRed(350));
 }
 
 void testconfirmMine(){

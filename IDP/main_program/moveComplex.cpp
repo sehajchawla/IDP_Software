@@ -34,10 +34,11 @@ void redReset(){
 
 
 void complexForward(){
-while (FULL_DEPTH - back_distance < TOLERANCE){
-  if (mine == false){confirmMine(); feedbackForward();updateBackDistance();} //no mine
-  else if (mine == true && red == false){yellowReset(); updateBackDistance();}//yellow mine
-  else if (mine == true && red == true){redReset(); updateBackDistance();} //red mine
+while (FULL_DEPTH - back_distance > TOLERANCE){
+  feedbackForward(); updateBackDistance();
+//  if (mine == false){confirmMine(); feedbackForward();updateBackDistance();} //no mine
+//  else if (mine == true && red == false){yellowReset(); updateBackDistance();}//yellow mine
+//  else if (mine == true && red == true){redReset(); updateBackDistance();} //red mine
 }
 }
 

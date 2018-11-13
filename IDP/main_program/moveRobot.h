@@ -6,8 +6,8 @@
 
 // declare constant
 #define TOLERANCE 5
-#define FULL_DEPTH 100 //cm
-#define FULL_WIDTH 100 //cm
+#define FULL_DEPTH 212 //cm
+#define FULL_WIDTH 200 //cm
 
 // declare global variables
 extern int time_clock; extern int back_distance;
@@ -83,6 +83,7 @@ void testcoordinate();
 
 //movement test
 void testleftwheel(); void testrightwheel();
+void testRotation();
 void testmove();
 void testfeedForward();
 void quicktestfeedforward();

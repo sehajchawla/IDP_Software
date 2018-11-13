@@ -5,16 +5,16 @@ void testleftwheel(){leftforward90();}
 void testrightwheel(){rightbackward90();}
 
 void testRotation(){
-  Serial.println("the robot should rotation clockwise180 and then anticlockwise180")
+  Serial.println("the robot should rotation clockwise180 and then anticlockwise180");
   rotation180(); rotation180(); delay(1000);
 
-  Serial.println("then it should run anti180 and clockwise180")
-  north == false;
+  Serial.println("then it should run anti180 and clockwise180");
+  north = false;
   rotation180(); rotation180();
 }
 
 void testmove(){
-  Serial.println("this robot will move forward and backward")
+  Serial.println("this robot will move forward and backward");
   if (time_clock < 5){goForward();time_clock += 1;}
   else if (time_clock < 10){goBackward(); time_clock += 1;}
   else {stopMotor();}
@@ -22,7 +22,7 @@ void testmove(){
 }
 
 void testfeedForward(){
-  Serial.println("feedForward() does not have motor run(RELEASE), this could be a problem")
+  Serial.println("feedForward() does not have motor run(RELEASE), this could be a problem");
   diff_speed = 35; Serial.println("the leftMotor should be slower");
   feedForward(); delay(4000);
 

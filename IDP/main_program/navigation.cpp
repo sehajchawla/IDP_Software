@@ -29,35 +29,38 @@ int getDistance(){
 
 void updateDiffDist(){
   side_distance1 = getDistance();
-  delay(200); //set the dt
+  delay(300); //set the dt
   side_distance2 = getDistance();
   diff_distance = side_distance2 - side_distance1;
 }
 
 void feedbackSetup(int kp){
-  if (absValue(diff_distance) < 0.05 * side_distance1){diff_speed=0;}
-  else if (absValue(diff_distance) < 0.7 * side_distance1){
+  updateDiffDist();
+  if (absValue(diff_distance) < 0){diff_speed=0;}
+  else if (absValue(diff_distance) < 15){
     int speed_temp; int abs_speed;
     speed_temp = kp*diff_distance; abs_speed = absValue(speed_temp);
     if (abs_speed < 50){diff_speed = speed_temp;}
-    else {diff_speed = 50;}
+    else {diff_speed = 50 * abs_speed / speed_temp;}
   }
   else {diff_speed = 0;}
 }
 
 //this function will set the diff_speed, which is crucial for feedForward function
 //refresh rate 0.1s due to updateDiffDist()
-void feedbackDiffSpeed(){
-  if (side_distance1 < 40){feedbackSetup(10);}
-  else if (side_distance1 < 80){feedbackSetup(8);}
-  else if (side_distance1 < 120){feedbackSetup(6);}
-  else {feedbackSetup(4);}
-}
+//void feedbackDiffSpeed(){
+//  if (side_distance1 < 40){feedbackSetup(10);}
+//  else if (side_distance1 < 80){feedbackSetup(10);}
+//  else if (side_distance1 < 120){feedbackSetup(10);}
+//  else {feedbackSetup(10);}
+//}
+
+void feedbackDiffSpeed(){feedbackSetup(6);}
 
 void updateBackDistance(){
   long duration; int distacne_measure;
-  const byte trig = 3;
-  const byte echo = 2;
+  const byte trig = 6;
+  const byte echo = 7;
 
   pinMode(trig, OUTPUT);
   digitalWrite(trig, LOW);

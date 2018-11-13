@@ -18,22 +18,33 @@ void setup() {
 }
 
 void loop() {
+//  rotation180();
   //navigation test
-  void testabsValue(); //purely software
-  void testgetDistance();
-  void testupdateDiffDist();
-  void testfeedbackSetup(); //purely software
-  void testcoordinate();
+//  testabsValue(); //purely software
+//  testgetDistance();
+//  testupdateDiffDist();
+//  testfeedbackSetup(); //purely software
+//  testcoordinate();
+//
+//  //movement test
+//  testleftwheel();
+//  testrightwheel();
+//  testRotation();
+//  testmove();
+//  testfeedForward();
+//  quicktestfeedforward();
+//
+//  //detection test
+//  testclassifyMine();
+//  testclassifyRed();
+//  testconfirmMine();
 
-  //movement test
-  void testleftwheel();
-  void testrightwheel();
-  void testmove();
-  void testfeedForward();
-  void quicktestfeedforward();
+  getCoordinate();
+  complexForward(); goBackward(); rotation180();
+  getCoordinate();
+  complexForward(); goBackward(); rotation180();
+  getCoordinate();
+  complexForward(); goBackward(); rotation180();
 
-  //detection test
-  void testclassifyMine();
-  void testclassifyRed();
-  void testconfirmMine();
+  stopMotor();
 }
