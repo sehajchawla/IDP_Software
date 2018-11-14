@@ -25,6 +25,7 @@ void testupdateDiffDist(){
 //purely software
 void testfeedbackSetup(){
   Serial.println("this test return the diff_speed, purely software test");
+  Serial.println("disable updatediffdistance() in nav please");
   side_distance1 = 200; side_distance2 = 210; diff_distance = 10;
   feedbackSetup(3); Serial.println("expect an answer of 30"); Serial.println(diff_speed);
   feedbackSetup(10); Serial.println("expect an answer of 50, not 100"); Serial.println(diff_speed);

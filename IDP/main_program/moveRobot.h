@@ -93,6 +93,10 @@ void testclassifyMine();
 void testclassifyRed();
 void testconfirmMine();
 
+void PIDSetup();
+void PIDloop();
+void PIDUpdateSetpoint();
+
 
 
 #endif

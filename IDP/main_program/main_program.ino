@@ -15,6 +15,7 @@ void setup() {
   //Serial.println("12");
   startMotor();
   startBlink();
+  PIDSetup();
 }
 
 void loop() {
@@ -38,13 +39,15 @@ void loop() {
 //  testclassifyMine();
 //  testclassifyRed();
 //  testconfirmMine();
+//  PIDUpdateSetpoint();
 
   getCoordinate();
   complexForward(); goBackward(); rotation180();
   getCoordinate();
   complexForward(); goBackward(); rotation180();
-  getCoordinate();
+  getCoordinate(); 
   complexForward(); goBackward(); rotation180();
+//  redReset();
 
   stopMotor();
 }

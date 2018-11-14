@@ -2,6 +2,9 @@
 
 //refresh rate 0.2s, each function has 0.1s refresh rate
 void feedbackForward(){feedbackDiffSpeed(); feedForward();}
+//void feedbackForward(){PIDloop(); feedForward();}
+
+
 
 //last for 0.2*run_time
 void runtimeForward(byte run_time){
@@ -10,17 +13,17 @@ void runtimeForward(byte run_time){
 
 void yellowReset() {
   Serial.println("yellow mine detected");
-  delay(3000); runtimeForward(5); mine = false;}
+  delay(3000); runtimeForward(15); mine = false;}
 
 void dodgeRed(){
   if (north == true){
-    leftbackward90(); runtimeForward(5); leftforward90();
-    runtimeForward(10);
+    leftbackward90(); runtimeForward(10); leftforward90();
+    runtimeForward(15);
     leftforward90(); rightforward90();
   }
   else if (north == false){
-    rightbackward90(); runtimeForward(5); rightforward90();
-    runtimeForward(10); //note 10 is crucial here
+    rightbackward90(); runtimeForward(10); rightforward90();
+    runtimeForward(15); //note 10 is crucial here
     rightforward90(); leftforward90();
   }
 }
