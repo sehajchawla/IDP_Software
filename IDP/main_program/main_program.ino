@@ -3,6 +3,8 @@
 //side_distance is the reading obtained from the ultrasond sensor
 int time_clock = 0;  int back_distance = 0;
 int side_distance2 = 0; int side_distance1 = 0; int diff_distance=0;
+int set_distance = 0;
+
 int x_coordinate = 0; int y_coordinate = 0;
 float diff_speed;
 
@@ -15,11 +17,15 @@ void setup() {
   //Serial.println("12");
   startMotor();
   startBlink();
-  PIDSetup();
+  //PIDSetup();
 }
 
 void loop() {
-//  rotation180();
+//  circular_rotation();
+//  delay(100);
+  leftback();
+  circular_rotation();
+
   //navigation test
 //  testabsValue(); //purely software
 //  testgetDistance();
@@ -41,12 +47,12 @@ void loop() {
 //  testconfirmMine();
 //  PIDUpdateSetpoint();
 
-  getCoordinate();
-  complexForward(); goBackward(); rotation180();
-  getCoordinate();
-  complexForward(); goBackward(); rotation180();
-  getCoordinate(); 
-  complexForward(); goBackward(); rotation180();
+//  getCoordinate(); updateSetdistance();
+//  complexForward(); goBackward(); rotation180();
+//  getCoordinate(); updateSetdistance();
+//  complexForward(); goBackward(); rotation180();
+//  getCoordinate(); updateSetdistance();
+//  complexForward(); goBackward(); rotation180();
 //  redReset();
 
   stopMotor();

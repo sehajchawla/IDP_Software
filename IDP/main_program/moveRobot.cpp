@@ -26,38 +26,40 @@ void feedForward(){
   // leftMotor->run(RELEASE); rightMotor->run(RELEASE); //this line is used to refresh the motor
   if (north == true){
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-  leftMotor->setSpeed(205-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+  leftMotor->setSpeed(230-diff_speed);  rightMotor->setSpeed(220+diff_speed);
   delay(1);
   }
   else if (north == false) {
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-  leftMotor->setSpeed(212-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+  leftMotor->setSpeed(223-diff_speed);  rightMotor->setSpeed(220+diff_speed);
   delay(1);
   }
 }
 
 // simple moving BACKWARD algorithm
 void goBackward(){
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+  delay(100);
   Serial.print("reversing");
   leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
-  leftMotor->setSpeed(150);  rightMotor->setSpeed(150);
-  delay(4000);
+  leftMotor->setSpeed(235);  rightMotor->setSpeed(235);
+  delay(3000);
 }
 
 void rotation180(){
   if (north == true){
     Serial.print("rotating clockwise180");
     leftMotor->run(FORWARD); rightMotor->run(RELEASE);
-    leftMotor->setSpeed(175);
-    delay(6500); //set motor run time
+    leftMotor->setSpeed(210);
+    delay(5350); //set motor run time
     leftMotor->run(RELEASE); rightMotor->run(RELEASE);
     north = false; //set the parameter for the next run
   }
   else if (north == false){
     Serial.print("rotating anticlockwise180");
     rightMotor->run(FORWARD); leftMotor->run(RELEASE);
-    rightMotor->setSpeed(175);
-    delay(6500); //set motor run time
+    rightMotor->setSpeed(210);
+    delay(5250); //set motor run time
     leftMotor->run(RELEASE); rightMotor->run(RELEASE);
     north = true;
   }
@@ -94,6 +96,34 @@ void rightbackward90(){
   delay(3900); //set motor run time
   leftMotor->run(RELEASE); rightMotor->run(RELEASE);
 }
+
+void circular_rotation(){
+  Serial.print("left wheel circulating");
+  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(225); rightMotor->setSpeed(85);
+  delay(6000); //set motor run time
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+  
+  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(115); rightMotor->setSpeed(215);
+  delay(2800);
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+}
+
+void leftback(){
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+  delay(100);
+  Serial.print("reversing");
+  leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
+  leftMotor->setSpeed(175);  rightMotor->setSpeed(175);
+  delay(1200);
+
+  leftMotor->run(BACKWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(175);  rightMotor->setSpeed(175);
+  delay(1600);
+  
+}
+
 
 
 //stop the motor for good

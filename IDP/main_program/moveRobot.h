@@ -12,6 +12,7 @@
 // declare global variables
 extern int time_clock; extern int back_distance;
 extern int side_distance1; extern int side_distance2; extern int diff_distance;
+extern int set_distance;
 extern float diff_speed;
 extern int x_coordinate; extern int y_coordinate;
 extern bool mine; extern bool red;
@@ -29,6 +30,8 @@ void feedForward();// moving forward algorithm for the feedback control
 
 void goBackward(); // simple moving BACKWARD algorithm
 void rotation180(); //will update bool north and clockwise_180
+void circular_rotation();
+void leftback();
 
 void leftforward90(); void rightforward90();
 void leftbackward90(); void rightbackward90();
@@ -49,11 +52,14 @@ void confirmMine(); //vital algorithm for complexForward()
 //navigation
 int absValue(int val); //return the absolute value
 int getDistance(); // get distance from the side ultrasound sensor
+void updateSetdistance();
 void updateDiffDist(); //return change of side distance
-void feedbackSetup(int kp); //proportional control; speed = kp * diff_distance
+void feedbackSetup(int kp, int kd); //proportional control; speed = kp * diff_distance
 void feedbackDiffSpeed();//this function will set the diff_speed, which is crucial for feedForward function
 //refresh rate 0.1s due to updateDiffDist()
 
+int returnBackdistance();
+int noiseFilter(); //filter out large noise that is not correct
 void updateBackDistance(); //get distance from back ultrasond sensor
 void getCoordinate();
 void reportCoordinate();

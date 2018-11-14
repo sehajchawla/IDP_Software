@@ -27,6 +27,8 @@ int getDistance(){
   return distance_measure;
 }
 
+void updateSetdistance(){set_distance = getDistance();}
+
 void updateDiffDist(){
   side_distance1 = getDistance();
   delay(300); //set the dt
@@ -34,17 +36,27 @@ void updateDiffDist(){
   diff_distance = side_distance2 - side_distance1;
 }
 
-void feedbackSetup(int kp){
+void feedbackSetup(int kp, int kd){
   updateDiffDist();
   if (absValue(diff_distance) < 0){diff_speed=0;}
   else if (absValue(diff_distance) < 15){
-    int speed_temp; int abs_speed;
-    speed_temp = kp*diff_distance; abs_speed = absValue(speed_temp);
-    if (abs_speed < 50){diff_speed = speed_temp;}
-    else {diff_speed = 50 * abs_speed / speed_temp;}
+    int speed_temp; int abs_speed;int error;
+    if (abs(diff_distance) < 3){
+      error = side_distance2 - set_distance;
+      speed_temp = kd*diff_distance + kp * error;
+      abs_speed = absValue(speed_temp);
+    }
+    else{
+      error = side_distance2 - set_distance;
+      speed_temp = 0.5*kd*diff_distance + 3*kp * error;
+      abs_speed = absValue(speed_temp);
+    }
+    if (abs_speed < 25){diff_speed = speed_temp;}
+    else {diff_speed = 25 * abs_speed / speed_temp;}
   }
   else {diff_speed = 0;}
 }
+
 
 //this function will set the diff_speed, which is crucial for feedForward function
 //refresh rate 0.1s due to updateDiffDist()
@@ -55,10 +67,13 @@ void feedbackSetup(int kp){
 //  else {feedbackSetup(10);}
 //}
 
-void feedbackDiffSpeed(){feedbackSetup(6);}
 
-void updateBackDistance(){
-  long duration; int distacne_measure;
+
+
+void feedbackDiffSpeed(){feedbackSetup(2, 6);}
+
+int returnBackdistance(){
+  long duration; int distance_measure;
   const byte trig = 6;
   const byte echo = 7;
 
@@ -71,8 +86,21 @@ void updateBackDistance(){
 
   pinMode(echo, INPUT);
   duration = pulseIn(echo, HIGH);
-  distacne_measure = duration / 29 / 2;
-  back_distance = distacne_measure;
+  distance_measure = duration / 29 / 2;
+  return distance_measure;
+}
+
+int noiseFilter(){
+  int temp_dist = returnBackdistance();
+  while (temp_dist > 230){temp_dist = returnBackdistance();}
+  return temp_dist;
+}
+
+void updateBackDistance(){
+  int temp_dist1 = noiseFilter();
+  int temp_dist2 = noiseFilter();
+  int temp_dist3 = noiseFilter();
+  back_distance = (temp_dist1 + temp_dist2 + temp_dist3) / 3;
 }
 
 void getCoordinate(){
