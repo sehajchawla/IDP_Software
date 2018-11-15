@@ -8,8 +8,7 @@ int absValue(int val){
   else {return 0;}
 }
 
-// get distance from the side ultrasound sensor
-int getDistance(){
+int getSidedistance(){
   long duration; int distance_measure;
   const byte trig = 12;
   const byte echo = 11;
@@ -25,6 +24,20 @@ int getDistance(){
   duration = pulseIn(echo, HIGH);
   distance_measure = duration / 29 / 2;
   return distance_measure;
+}
+
+int sidenoiseFilter(){
+  int temp_dist = getSidedistance();
+  while (temp_dist > 250){temp_dist = getSidedistance();}
+  return temp_dist;
+}
+
+// get distance from the side ultrasound sensor
+int getDistance(){
+  int temp_dist1 = sidenoiseFilter();
+  int temp_dist2 = sidenoiseFilter();
+  int temp_dist3 = sidenoiseFilter();
+  return (temp_dist1 + temp_dist2 + temp_dist3) / 3;
 }
 
 void updateSetdistance(){set_distance = getDistance();}
@@ -48,7 +61,7 @@ void feedbackSetup(int kp, int kd){
     }
     else{
       error = side_distance2 - set_distance;
-      speed_temp = 0.5*kd*diff_distance + 3*kp * error;
+      speed_temp = kd*diff_distance + 1.2*kp * error;
       abs_speed = absValue(speed_temp);
     }
     if (abs_speed < 25){diff_speed = speed_temp;}
@@ -70,7 +83,7 @@ void feedbackSetup(int kp, int kd){
 
 
 
-void feedbackDiffSpeed(){feedbackSetup(2, 6);}
+void feedbackDiffSpeed(){feedbackSetup(1, 6);}
 
 int returnBackdistance(){
   long duration; int distance_measure;

@@ -6,8 +6,8 @@
 
 // declare constant
 #define TOLERANCE 5
-#define FULL_DEPTH 212 //cm
-#define FULL_WIDTH 200 //cm
+#define FULL_DEPTH 224 //cm
+#define FULL_WIDTH 226 //cm
 
 // declare global variables
 extern int time_clock; extern int back_distance;
@@ -21,6 +21,13 @@ extern bool north;
 
 
 // function prototypes
+
+//calibration
+void caliSidedistance();
+void caliBackdistance();
+void dispLightSensor();
+void caliLightRange();
+
 //simple movements
 void goForward(); // simple moving forward algorithm, used in dodgeRed()
 
@@ -29,12 +36,15 @@ void feedForward();// moving forward algorithm for the feedback control
 //refresh rate 0.1s
 
 void goBackward(); // simple moving BACKWARD algorithm
+void gentleReverse();
 void rotation180(); //will update bool north and clockwise_180
-void circular_rotation();
-void leftback();
-
 void leftforward90(); void rightforward90();
 void leftbackward90(); void rightbackward90();
+
+void circular_rotation();
+void anticlockwise90();
+void clockwise90();
+void centerrotation180();
 void stopMotor();
 void startMotor(); //used in setup() in main_program
 
@@ -51,6 +61,8 @@ void confirmMine(); //vital algorithm for complexForward()
 
 //navigation
 int absValue(int val); //return the absolute value
+int getSidedistance();
+int sidenoiseFilter();
 int getDistance(); // get distance from the side ultrasound sensor
 void updateSetdistance();
 void updateDiffDist(); //return change of side distance
@@ -93,15 +105,17 @@ void testRotation();
 void testmove();
 void testfeedForward();
 void quicktestfeedforward();
+void testdodge();
+void testdodgered();
 
 //detection test
 void testclassifyMine();
 void testclassifyRed();
 void testconfirmMine();
 
-void PIDSetup();
-void PIDloop();
-void PIDUpdateSetpoint();
+// void PIDSetup();
+// void PIDloop();
+// void PIDUpdateSetpoint();
 
 
 

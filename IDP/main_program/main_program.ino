@@ -21,16 +21,16 @@ void setup() {
 }
 
 void loop() {
-//  circular_rotation();
-//  delay(100);
-  leftback();
-  circular_rotation();
+//  rotation180();
+//  redReset();
+//  caliBackdistance();
+//  caliSidedistance();
 
   //navigation test
 //  testabsValue(); //purely software
 //  testgetDistance();
 //  testupdateDiffDist();
-//  testfeedbackSetup(); //purely software
+//  testfeedbackSetup(); //purely software, remember to turn off updateDiffDist();
 //  testcoordinate();
 //
 //  //movement test
@@ -40,12 +40,13 @@ void loop() {
 //  testmove();
 //  testfeedForward();
 //  quicktestfeedforward();
+//  testdodge();
+//  testdodgered();
 //
 //  //detection test
 //  testclassifyMine();
 //  testclassifyRed();
 //  testconfirmMine();
-//  PIDUpdateSetpoint();
 
 //  getCoordinate(); updateSetdistance();
 //  complexForward(); goBackward(); rotation180();
@@ -55,5 +56,8 @@ void loop() {
 //  complexForward(); goBackward(); rotation180();
 //  redReset();
 
-  stopMotor();
+//  returnBase();
+//  stopMotor();
+  int val = analogRead(A0);
+  Serial.println(val);
 }

@@ -46,6 +46,14 @@ void goBackward(){
   delay(3000);
 }
 
+void gentleReverse(){
+  delay(100);
+  Serial.print("reversing");
+  leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
+  leftMotor->setSpeed(100);  rightMotor->setSpeed(100);
+  delay(100);
+}
+
 void rotation180(){
   if (north == true){
     Serial.print("rotating clockwise180");
@@ -98,33 +106,66 @@ void rightbackward90(){
 }
 
 void circular_rotation(){
-  Serial.print("left wheel circulating");
-  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-  leftMotor->setSpeed(225); rightMotor->setSpeed(85);
-  delay(6000); //set motor run time
-  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
-  
-  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-  leftMotor->setSpeed(115); rightMotor->setSpeed(215);
-  delay(2800);
-  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+  if (north == true){
+    Serial.print("left wheel circulating");
+    leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+    leftMotor->setSpeed(225); rightMotor->setSpeed(100);
+    delay(7000); //set motor run time
+    leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+
+    leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+    leftMotor->setSpeed(115); rightMotor->setSpeed(215);
+    delay(2900);
+    leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+  }
+  else if (north == false){
+    Serial.print("right wheel circulating");
+    rightMotor->run(FORWARD); leftMotor->run(FORWARD);
+    rightMotor->setSpeed(225); leftMotor->setSpeed(85);
+    delay(6000); //set motor run time
+    rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+
+    rightMotor->run(FORWARD); leftMotor->run(FORWARD);
+    rightMotor->setSpeed(115); leftMotor->setSpeed(215);
+    delay(2900);
+    rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+  }
+
 }
 
-void leftback(){
+void anticlockwise90(){
   leftMotor->run(RELEASE); rightMotor->run(RELEASE);
   delay(100);
-  Serial.print("reversing");
+  Serial.print("anticlockwise90");
   leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
   leftMotor->setSpeed(175);  rightMotor->setSpeed(175);
-  delay(1200);
+  delay(1400);
 
   leftMotor->run(BACKWARD); rightMotor->run(FORWARD);
   leftMotor->setSpeed(175);  rightMotor->setSpeed(175);
   delay(1600);
-  
 }
 
+void clockwise90(){
+  rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+  delay(100);
+  Serial.print("clockwise90");
+  rightMotor->run(BACKWARD); leftMotor->run(BACKWARD);
+  rightMotor->setSpeed(175);  leftMotor->setSpeed(175);
+  delay(1400);
 
+  rightMotor->run(BACKWARD); leftMotor->run(FORWARD);
+  rightMotor->setSpeed(175);  leftMotor->setSpeed(175);
+  delay(1600);
+}
+
+void centerrotation180(){
+  Serial.print("center rotation 180");
+  rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+  rightMotor->run(BACKWARD); leftMotor->run(FORWARD);
+  rightMotor->setSpeed(175);  leftMotor->setSpeed(175);
+  delay(3000);
+}
 
 //stop the motor for good
 void stopMotor(){
@@ -133,7 +174,7 @@ void stopMotor(){
 }
 
 void startMotor(){
-  Serial.println("Adafruit Motorshield v2 - DC Motor test!");
+  Serial.println("Adafruit Motorshield v2 - DC Motor starting!");
   AFMS.begin();  // create with the default frequency 1.6KHz
   //AFMS.begin(1000);  // OR with a different frequency, say 1KHz
 }

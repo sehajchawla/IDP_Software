@@ -43,3 +43,6 @@ void quicktestfeedforward(){
   }
   stopMotor();
 }
+
+void testdodge(){anticlockwise90(); circular_rotation();}
+void testdodgered(){dodgeRed(); north = false; dodgeRed();}
