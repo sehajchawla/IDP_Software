@@ -56,8 +56,8 @@ void loop() {
 //  complexForward(); goBackward(); rotation180();
 //  redReset();
 
-//  returnBase();
-//  stopMotor();
-  int val = analogRead(A0);
-  Serial.println(val);
+  returnBase();
+  stopMotor();
+//  int val = analogRead(A0);
+//  Serial.println(val);
 }

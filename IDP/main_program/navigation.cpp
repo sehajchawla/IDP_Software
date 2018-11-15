@@ -61,7 +61,7 @@ void feedbackSetup(int kp, int kd){
     }
     else{
       error = side_distance2 - set_distance;
-      speed_temp = kd*diff_distance + 1.2*kp * error;
+      speed_temp = 0.5*kd*diff_distance + 2*kp * error;
       abs_speed = absValue(speed_temp);
     }
     if (abs_speed < 25){diff_speed = speed_temp;}
@@ -83,7 +83,7 @@ void feedbackSetup(int kp, int kd){
 
 
 
-void feedbackDiffSpeed(){feedbackSetup(1, 6);}
+void feedbackDiffSpeed(){feedbackSetup(2, 6);}
 
 int returnBackdistance(){
   long duration; int distance_measure;

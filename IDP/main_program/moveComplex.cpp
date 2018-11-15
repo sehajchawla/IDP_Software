@@ -56,14 +56,15 @@ void returnBase(){
   Blink();
   if (north == true){
     //north = false; //make the robot do a anticlockwise180
-    centerrotation180(); updateBackDistance(); north = false;
-    while (back_distance < 169) {updateBackDistance(); complexForward();}
+    centerrotation180(); north = false;
+    //while (back_distance < 169) {updateBackDistance(); feedbackForward();}
+    getCoordinate(); updateSetdistance(); complexForward(); goBackward();
   }
-  rightbackward90(); updateBackDistance();
-  while (back_distance < 191){updateBackDistance(); complexForward();}
+  rightbackward90(); updateBackDistance(); getCoordinate(); updateSetdistance();
+  while (back_distance < 191){updateBackDistance(); feedbackForward();}
 
   rightbackward90(); updateBackDistance();
-  while (back_distance > 23) {gentleReverse();}
+  while (back_distance > 23) {gentleReverse();updateBackDistance();}
 
   stopMotor();
 }
