@@ -61,7 +61,7 @@ void returnBase(){
     getCoordinate(); updateSetdistance(); complexForward(); goBackward();
   }
   rightbackward90(); updateBackDistance(); getCoordinate(); updateSetdistance();
-  while (back_distance < 191){updateBackDistance(); feedbackForward();}
+  while (back_distance < 188){updateBackDistance(); feedbackForward();}
 
   rightbackward90(); updateBackDistance();
   while (back_distance > 23) {gentleReverse();updateBackDistance();}
@@ -72,6 +72,6 @@ void returnBase(){
 
 void grandTrip(){
   getCoordinate(); updateSetdistance(); complexForward(); goBackward();
-  if (x_coordinate < FULL_WIDTH - 15){rotation180(); complexForward(); goBackward();}
-  else {returnBase();}
+  while (x_coordinate < FULL_WIDTH - 15){rotation180(); complexForward(); goBackward();}
+  returnBase(); stopMotor();
 }
