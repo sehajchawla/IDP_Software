@@ -72,6 +72,6 @@ void returnBase(){
 
 void grandTrip(){
   getCoordinate(); updateSetdistance(); complexForward(); goBackward();
-  while (x_coordinate < FULL_WIDTH - 15){rotation180(); complexForward(); goBackward();}
+  while (x_coordinate < FULL_WIDTH - 20){rotation180(); complexForward(); goBackward();}
   returnBase(); stopMotor();
 }

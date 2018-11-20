@@ -16,7 +16,7 @@ void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   //Serial.println("12");
   startMotor();
-  startBlink();
+  //startBlink();
   //PIDSetup();
 }
 
@@ -56,8 +56,8 @@ void loop() {
 //  complexForward(); goBackward(); rotation180();
 //  redReset();
 
-  returnBase();
-  stopMotor();
-//  int val = analogRead(A0);
+//  returnBase();
+//  stopMotor();
+//  int val = analogRead(A1);
 //  Serial.println(val);
 }
