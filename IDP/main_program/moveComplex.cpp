@@ -44,8 +44,9 @@ void redReset(){
 
 
 void complexForward(){
-while (back_distance < 209){
-  feedbackForward(); updateBackDistance();
+  updateBackDistance();
+  while (back_distance < 203){
+    feedbackForward(); updateBackDistance();
 //  if (mine == false){confirmMine(); feedbackForward();updateBackDistance();} //no mine
 //  else if (mine == true && red == false){yellowReset(); updateBackDistance();}//yellow mine
 //  else if (mine == true && red == true){redReset(); updateBackDistance();} //red mine
@@ -61,17 +62,17 @@ void returnBase(){
     getCoordinate(); updateSetdistance(); complexForward(); goBackward();
   }
   rightbackward90(); updateBackDistance(); getCoordinate(); updateSetdistance();
-  while (back_distance < 188){updateBackDistance(); feedbackForward();}
+  while (back_distance < 197){updateBackDistance(); feedbackForward();}
 
   rightbackward90(); updateBackDistance();
-  while (back_distance > 23) {gentleReverse();updateBackDistance();}
+  while (back_distance > 17) {gentleReverse();updateBackDistance();}
 
   stopMotor();
 }
 
 
 void grandTrip(){
-  getCoordinate(); updateSetdistance(); complexForward(); goBackward();
-  while (x_coordinate < FULL_WIDTH - 20){rotation180(); complexForward(); goBackward();}
+  getCoordinate(); updateSetdistance(); complexForward(); goBackward(); getCoordinate();
+  while (x_coordinate < 171){rotation180(); complexForward(); goBackward();getCoordinate();}
   returnBase(); stopMotor();
 }

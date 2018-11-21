@@ -16,13 +16,13 @@ void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   //Serial.println("12");
   startMotor();
-  //startBlink();
+  startBlink();
   //PIDSetup();
 }
 
 void loop() {
 //  rotation180();
-//  redReset();
+//  redReset(); delay(5000); north = false; redReset();
 //  caliBackdistance();
 //  caliSidedistance();
 
@@ -48,16 +48,38 @@ void loop() {
 //  testclassifyRed();
 //  testconfirmMine();
 
-//  getCoordinate(); updateSetdistance();
+//  getCoordinate(); updateSetdistance(); updateBackDistance();
 //  complexForward(); goBackward(); rotation180();
-//  getCoordinate(); updateSetdistance();
+//  getCoordinate(); updateSetdistance(); updateBackDistance();
 //  complexForward(); goBackward(); rotation180();
-//  getCoordinate(); updateSetdistance();
+//  getCoordinate(); updateSetdistance(); updateBackDistance();
 //  complexForward(); goBackward(); rotation180();
 //  redReset();
-
 //  returnBase();
 //  stopMotor();
-//  int val = analogRead(A1);
+//  int val = analogRead(A8);
 //  Serial.println(val);
+//  caliBackdistance();
+//  caliSidedistance();
+  dispLightSensor();
+
+//  goBackward(); // simple moving BACKWARD algorithm
+//  gentleReverse();
+//  rotation180(); //will update bool north and clockwise_180
+//  delay(2000);
+//  rotation180();
+//  leftforward90(); delay(5000);
+//  rightforward90(); delay(5000);
+//  leftbackward90(); delay(5000);
+//  rightbackward90();
+//
+//  circular_rotation();
+//  anticlockwise90(); delay(5000);
+//  clockwise90(); delay(5000);
+//  centerrotation180();
+//  grandTrip();
+//  stopMotor();
+
+ 
+  
 }

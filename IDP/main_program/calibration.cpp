@@ -3,7 +3,7 @@
 void caliSidedistance(){
   for (byte i; i < 5; i++){
     int side_dist = getDistance();
-    Serial.println("here is the side distance: ");
+    //Serial.println("here is the side distance: ");
     Serial.println(side_dist);
   }
 }
@@ -11,18 +11,25 @@ void caliSidedistance(){
 void caliBackdistance(){
   for (byte i; i < 5; i++){
     updateBackDistance();
-    Serial.println("Here is the back distance: ");
+    //Serial.println("Here is the back distance: ");
     Serial.println(back_distance);
   }
 }
 
 void dispLightSensor(){
-  for (byte i; i < 10; i++){
-    int val1 = analogRead(A0); int val2 = analogRead(A1);
-    int val3 = analogRead(A2); int val4 = analogRead(A3);
-    int val5 = analogRead(A4);
-    Serial.print(val1); Serial.print(val2); Serial.print(val3);
-    Serial.print(val4); Serial.println(val5);
+//for (byte i; i < 10000; i++)
+  while (true){
+    int val1 = analogRead(A8); int val2 = analogRead(A9);
+    int val3 = analogRead(A10); int val4 = analogRead(A11);
+    int val5 = analogRead(A12);
+    int sum_all = val1 + val2 + val3 + val4 + val5;
+    Serial.print(val1); Serial.print(" ");
+    Serial.print(val2); Serial.print(" ");
+    Serial.print(val3); Serial.print(" ");
+    Serial.print(val4); Serial.print(" ");
+    Serial.print(val5); Serial.print("   ");
+    Serial.println(sum_all);
+    delay(200);
   }
 }
 
