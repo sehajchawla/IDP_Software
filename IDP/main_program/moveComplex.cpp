@@ -13,7 +13,7 @@ void runtimeForward(byte run_time){
 
 void yellowReset() {
   Serial.println("yellow mine detected");
-  delay(3000); runtimeForward(15); mine = false;}
+  delay(3000); BlinkYellow(); runtimeForward(15); mine = false;}
 
 // void dodgeRed(){
 //   if (north == true){
@@ -36,7 +36,7 @@ void dodgeRed(){
 
 void redReset(){
   Serial.println("red mine detected");
-  delay(1000); Blink(); reportCoordinate(); delay(2000);
+  delay(1000); BlinkRed(); reportCoordinate(); delay(2000);
   dodgeRed();
   mine = false; red = false;
   //updateSetdistance();
