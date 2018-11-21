@@ -44,7 +44,7 @@ void updateSetdistance(){set_distance = getDistance();}
 
 void updateDiffDist(){
   side_distance1 = getDistance();
-  delay(300); //set the dt
+  delay(250); //set the dt
   side_distance2 = getDistance();
   diff_distance = side_distance2 - side_distance1;
 }
@@ -69,19 +69,6 @@ void feedbackSetup(int kp, int kd){
   }
   else {diff_speed = 0;}
 }
-
-
-//this function will set the diff_speed, which is crucial for feedForward function
-//refresh rate 0.1s due to updateDiffDist()
-//void feedbackDiffSpeed(){
-//  if (side_distance1 < 40){feedbackSetup(10);}
-//  else if (side_distance1 < 80){feedbackSetup(10);}
-//  else if (side_distance1 < 120){feedbackSetup(10);}
-//  else {feedbackSetup(10);}
-//}
-
-
-
 
 void feedbackDiffSpeed(){feedbackSetup(0, 6);}
 

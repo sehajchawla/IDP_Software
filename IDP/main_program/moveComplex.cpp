@@ -1,55 +1,49 @@
 #include "moveRobot.h"
 
-//refresh rate 0.2s, each function has 0.1s refresh rate
+//refresh rate 0.25s, each function has 0.1s refresh rate
 void feedbackForward(){feedbackDiffSpeed(); feedForward();}
+void feedbackForward2(){feedbackDiffSpeed(); feedForward2();}
 //void feedbackForward(){PIDloop(); feedForward();}
 
 
-
-//last for 0.2*run_time
+//last for 0.25*run_time
 void runtimeForward(byte run_time){
   for (byte i = 1; i < run_time; i++){feedbackForward();}
 }
 
 void yellowReset() {
   Serial.println("yellow mine detected");
-  delay(3000); BlinkYellow(); runtimeForward(15); mine = false;}
-
-// void dodgeRed(){
-//   if (north == true){
-//     leftbackward90(); runtimeForward(10); leftforward90();
-//     runtimeForward(15);
-//     leftforward90(); rightforward90();
-//   }
-//   else if (north == false){
-//     rightbackward90(); runtimeForward(10); rightforward90();
-//     runtimeForward(15); //note 10 is crucial here
-//     rightforward90(); leftforward90();
-//   }
-// }
+  tempStopmotor();
+  BlinkYellow(); delay(2000); runtimeForward(15); mine = false; detection = false;
+  minetic = 0; minetoc = 0; minebase = 0; minemaxdiff = 0;
+}
 
 void dodgeRed(){
-  if (north == true){anticlockwise90();}
-  else if (north == false){clockwise90();}
-  circular_rotation();
+  if (north == true){rotation_reverse(); anticlockwise90(); circular_rotation(); anticlockwise90();}
+  else if (north == false){rotation_reverse(); clockwise90(); circular_rotation(); clockwise90();}
 }
 
 void redReset(){
   Serial.println("red mine detected");
-  delay(1000); BlinkRed(); reportCoordinate(); delay(2000);
+  tempStopmotor();
+  BlinkRed(); reportCoordinate(); delay(2000);
   dodgeRed();
-  mine = false; red = false;
+  mine = false; red = false; detection = false;
+  minetic = 0; minetoc = 0; minebase = 0; minemaxdiff = 0;
   //updateSetdistance();
 }
 
 
 void complexForward(){
   updateBackDistance();
-  while (back_distance < 203){
-    feedbackForward(); updateBackDistance();
-//  if (mine == false){confirmMine(); feedbackForward();updateBackDistance();} //no mine
-//  else if (mine == true && red == false){yellowReset(); updateBackDistance();}//yellow mine
-//  else if (mine == true && red == true){redReset(); updateBackDistance();} //red mine
+  while (back_distance < 100){
+//    feedbackForward(); updateBackDistance();
+  if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance();} //no mine
+  else if (mine == true && detection == false){classifyRed();}
+  else if (mine == true && red == false && detection == true){yellowReset(); updateBackDistance();}//yellow mine
+  else if (mine == true && red == true && detection == true){redReset(); updateBackDistance();} //red mine
+
+
 }
 }
 

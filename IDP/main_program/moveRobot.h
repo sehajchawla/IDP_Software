@@ -15,9 +15,9 @@ extern int side_distance1; extern int side_distance2; extern int diff_distance;
 extern int set_distance;
 extern float diff_speed;
 extern int x_coordinate; extern int y_coordinate;
-extern bool mine; extern bool red;
+extern bool mine; extern bool red; extern bool detection;
 extern bool north;
-extern int minetic; extern int minetoc;
+extern int minetic; extern int minetoc; extern int minebase; extern int minemaxdiff;
 
 
 
@@ -37,20 +37,19 @@ void feedForward();// moving forward algorithm for the feedback control
 //refresh rate 0.1s
 
 void goBackward(); // simple moving BACKWARD algorithm
-void goBackward2();
 void gentleReverse();
 void rotation180(); //will update bool north and clockwise_180
 void leftforward90(); void rightforward90();
 void leftbackward90(); void rightbackward90();
 
-void circular_rotation();
-void anticlockwise90();
-void clockwise90();
+void circular_rotation(); void rotation_reverse();
+void anticlockwise90(); void clockwise90();
+
 void centerrotation180();
 void stopMotor();
+void tempStopmotor();
 void startMotor(); //used in setup() in main_program
-
-void goForward250(); void goForward300(); void goForward200();
+void feedForward2();
 
 
 
@@ -59,10 +58,11 @@ void startBlinkRed(); //used in setup() in main_program
 void BlinkRed(); //only blink the LED
 void startBlinkYellow(); //used in setup() in main_program
 void BlinkYellow(); //only blink the LED
-byte classifyMine(int sensorValue); //for classifyMine()
-byte classifyRed(int sensorValue); //for classifyMine()
-void tic_mine(); //vital algorithm for complexForward()
-void toc_mine();
+int getColourvalue();
+void tic_mine();
+void classifyMine();
+void updateMinemaxdiff();
+void classifyRed();
 
 
 
@@ -87,6 +87,7 @@ void reportCoordinate();
 
 //complex movements
 void feedbackForward(); //refresh rate 0.2s, moving forward with feedback
+void feedbackForward2();
 //this code will not stop the motor
 
 void runtimeForward(byte run_time); //run feedForward() for run_time * 0.2s
@@ -114,15 +115,6 @@ void testfeedForward();
 void quicktestfeedforward();
 void testdodge();
 void testdodgered();
-
-//detection test
-void testclassifyMine();
-void testclassifyRed();
-void testconfirmMine();
-
-// void PIDSetup();
-// void PIDloop();
-// void PIDUpdateSetpoint();
 
 
 
