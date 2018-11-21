@@ -17,6 +17,7 @@ extern float diff_speed;
 extern int x_coordinate; extern int y_coordinate;
 extern bool mine; extern bool red;
 extern bool north;
+extern int minetic; extern int minetoc;
 
 
 
@@ -36,6 +37,7 @@ void feedForward();// moving forward algorithm for the feedback control
 //refresh rate 0.1s
 
 void goBackward(); // simple moving BACKWARD algorithm
+void goBackward2();
 void gentleReverse();
 void rotation180(); //will update bool north and clockwise_180
 void leftforward90(); void rightforward90();
@@ -48,6 +50,8 @@ void centerrotation180();
 void stopMotor();
 void startMotor(); //used in setup() in main_program
 
+void goForward250(); void goForward300(); void goForward200();
+
 
 
 //detectMine
@@ -57,7 +61,8 @@ void startBlinkYellow(); //used in setup() in main_program
 void BlinkYellow(); //only blink the LED
 byte classifyMine(int sensorValue); //for classifyMine()
 byte classifyRed(int sensorValue); //for classifyMine()
-void confirmMine(); //vital algorithm for complexForward()
+void tic_mine(); //vital algorithm for complexForward()
+void toc_mine();
 
 
 

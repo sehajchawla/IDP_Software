@@ -12,10 +12,10 @@ Adafruit_DCMotor *leftMotor = AFMS.getMotor(1);
 
 // moving forward algorithm
 void goForward(){
-  Serial.print("moving forward");
+  //Serial.println("moving forward");
   leftMotor->run(FORWARD); rightMotor->run(FORWARD);
   leftMotor->setSpeed(200);  rightMotor->setSpeed(200);
-  delay(1000);
+  delay(200);
 }
 
 // moving forward algorithm for the feedback control
@@ -44,6 +44,14 @@ void goBackward(){
   leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
   leftMotor->setSpeed(235);  rightMotor->setSpeed(235);
   delay(2000);
+}
+
+void goBackward2(){
+  leftMotor->run(RELEASE); rightMotor->run(RELEASE);
+  //Serial.println("reversing");
+  leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
+  leftMotor->setSpeed(200);  rightMotor->setSpeed(200);
+  delay(2500);
 }
 
 void gentleReverse(){
@@ -180,4 +188,23 @@ void startMotor(){
   Serial.println("Adafruit Motorshield v2 - DC Motor starting!");
   AFMS.begin();  // create with the default frequency 1.6KHz
   //AFMS.begin(1000);  // OR with a different frequency, say 1KHz
+}
+
+void goForward250(){
+  //Serial.println("moving forward");
+  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(200);  rightMotor->setSpeed(200);
+  delay(250);
+}
+void goForward300(){
+  //Serial.println("moving forward");
+  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(200);  rightMotor->setSpeed(200);
+  delay(300);
+}
+void goForward200(){
+  //Serial.println("moving forward");
+  leftMotor->run(FORWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(200);  rightMotor->setSpeed(200);
+  delay(250);
 }

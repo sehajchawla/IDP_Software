@@ -8,8 +8,23 @@ int set_distance = 0;
 int x_coordinate = 0; int y_coordinate = 0;
 float diff_speed;
 
+int minetic=0; int minetoc=0;
 bool mine=false; bool red=false;
 bool north=true;
+
+void sensor_testing(){
+//  for (byte i; i < 5; i++) {tic_mine(); goForward250(); toc_mine();}
+//  goBackward2(); Serial.println(" ");
+//
+//  for (byte i; i < 5; i++) {tic_mine(); goForward300(); toc_mine();}
+//  goBackward2(); Serial.println(" ");
+
+  for (byte i; i < 15; i++) {tic_mine(); goForward(); toc_mine();}
+  goBackward2(); Serial.println(" ");
+  
+  for (byte i; i < 10; i++) {tic_mine(); goForward200(); toc_mine();}
+  goBackward2(); Serial.println(" ");
+}
 
 void setup() {
   //Serial.println("01");
@@ -79,8 +94,11 @@ void loop() {
 //  clockwise90(); delay(5000);
 //  centerrotation180();
 //  grandTrip();
-//  stopMotor();
 
- 
-  
+//  sensor_testing();
+  sensor_testing();
+  stopMotor();
+
+
+
 }

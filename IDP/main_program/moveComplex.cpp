@@ -54,7 +54,7 @@ void complexForward(){
 }
 
 void returnBase(){
-  Blink();
+  BlinkYellow(); BlinkRed();
   if (north == true){
     //north = false; //make the robot do a anticlockwise180
     centerrotation180(); north = false;

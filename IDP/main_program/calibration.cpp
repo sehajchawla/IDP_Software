@@ -18,19 +18,18 @@ void caliBackdistance(){
 
 void dispLightSensor(){
 //for (byte i; i < 10000; i++)
-  while (true){
-    int val1 = analogRead(A8); int val2 = analogRead(A9);
-    int val3 = analogRead(A10); int val4 = analogRead(A11);
-    int val5 = analogRead(A12);
-    int sum_all = val1 + val2 + val3 + val4 + val5;
-    Serial.print(val1); Serial.print(" ");
-    Serial.print(val2); Serial.print(" ");
-    Serial.print(val3); Serial.print(" ");
-    Serial.print(val4); Serial.print(" ");
-    Serial.print(val5); Serial.print("   ");
-    Serial.println(sum_all);
-    delay(200);
-  }
+//  while (true){}
+  int val1 = analogRead(A9); int val2 = analogRead(A10);
+  int val3 = analogRead(A11); int val4 = analogRead(A12);
+  int val5 = analogRead(A13);
+  int sum_all = val1 + val2 + val3 + val4 + val5;
+  Serial.print(val1); Serial.print(" ");
+  Serial.print(val2); Serial.print(" ");
+  Serial.print(val3); Serial.print(" ");
+  Serial.print(val4); Serial.print(" ");
+  Serial.print(val5); Serial.print("   ");
+  Serial.println(sum_all);
+  //delay(200);
 }
 
 void caliLightRange(){
