@@ -51,8 +51,10 @@ void startMotor(); //used in setup() in main_program
 
 
 //detectMine
-void startBlink(); //used in setup() in main_program
-void Blink(); //only blink the LED
+void startBlinkRed(); //used in setup() in main_program
+void BlinkRed(); //only blink the LED
+void startBlinkYellow(); //used in setup() in main_program
+void BlinkYellow(); //only blink the LED
 byte classifyMine(int sensorValue); //for classifyMine()
 byte classifyRed(int sensorValue); //for classifyMine()
 void confirmMine(); //vital algorithm for complexForward()
