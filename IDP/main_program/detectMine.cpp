@@ -1,13 +1,19 @@
 #include "moveRobot.h"
 
-void startBlink(){pinMode(LED_BUILTIN, OUTPUT);}
-void Blink(){
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+void startBlinkRed(){pinMode(18, OUTPUT);}
+void BlinkRed(){
+  digitalWrite(18, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(100);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  digitalWrite(18, LOW);    // turn the LED off by making the voltage LOW
   delay(100);                       // wait for a second
 }
-
+void startBlinkYellow(){pinMode(19, OUTPUT);}
+void BlinkYellow(){
+  digitalWrite(19, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(100);                       // wait for a second
+  digitalWrite(19, LOW);    // turn the LED off by making the voltage LOW
+  delay(100);                       // wait for a second
+}
 //note this function does not classify the colour of the mine
 byte classifyMine(int sensorValue){
   //this line is for the color red
