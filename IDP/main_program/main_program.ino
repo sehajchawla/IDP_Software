@@ -16,7 +16,8 @@ void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   //Serial.println("12");
   startMotor();
-  startBlink();
+  startBlinkRed();
+  startBlinkYellow();
   //PIDSetup();
 }
 
