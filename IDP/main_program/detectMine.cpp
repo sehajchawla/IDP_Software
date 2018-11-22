@@ -85,8 +85,8 @@ void classifyRed(){
 
   if (minemaxdiff > 200) {resetMinedetect();}
   else {
-    if (maxcolour < 102 && maxcolour > 20) {detection = true; mine = true; red = true; Serial.println("mine true");}
-    else if (maxcolour > 102 && maxcolour < 200) {detection = true;mine = true; red = false;Serial.println("mine true");}
+    if (maxcolour < 100 && maxcolour > 20) {detection = true; mine = true; red = true; Serial.println("mine true");}
+    else if (maxcolour > 100 && maxcolour < 200) {detection = true;mine = true; red = false;Serial.println("mine true");}
   }
 
 }

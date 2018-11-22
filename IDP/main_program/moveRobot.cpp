@@ -19,12 +19,12 @@ void feedForward(){
   // leftMotor->run(RELEASE); rightMotor->run(RELEASE); //this line is used to refresh the motor
   if (north == true){
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-    leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+    leftMotor->setSpeed(225-diff_speed);  rightMotor->setSpeed(220+diff_speed);
     delay(1);
   }
   else if (north == false) {
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-    leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+    leftMotor->setSpeed(223-diff_speed);  rightMotor->setSpeed(220+diff_speed);
     delay(1);
   }
 }
@@ -35,7 +35,7 @@ void goBackward(){
   //Serial.print("reversing");
   leftMotor->run(BACKWARD); rightMotor->run(BACKWARD);
   leftMotor->setSpeed(235);  rightMotor->setSpeed(235);
-  delay(2000);
+  delay(2500);
 }
 
 void gentleReverse(){
@@ -50,7 +50,7 @@ void rotation180(){
     //Serial.print("rotating clockwise180");
     leftMotor->run(FORWARD); rightMotor->run(RELEASE);
     leftMotor->setSpeed(210);
-    delay(5000); //set motor run time
+    delay(4800); //set motor run time
     leftMotor->run(RELEASE); rightMotor->run(RELEASE);
     north = false; //set the parameter for the next run
   }
@@ -58,7 +58,7 @@ void rotation180(){
     //Serial.print("rotating anticlockwise180");
     rightMotor->run(FORWARD); leftMotor->run(RELEASE);
     rightMotor->setSpeed(210);
-    delay(5100); //set motor run time
+    delay(4800); //set motor run time
     leftMotor->run(RELEASE); rightMotor->run(RELEASE);
     north = true;
   }
@@ -162,14 +162,14 @@ void centerrotation180(){
 void detection_rotation1(){
   //rightMotor->run(RELEASE); leftMotor->run(RELEASE);
   rightMotor->run(BACKWARD); leftMotor->run(FORWARD);
-  rightMotor->setSpeed(75);  leftMotor->setSpeed(75);
+  rightMotor->setSpeed(100);  leftMotor->setSpeed(100);
   delay(5);
 }
 
 void detection_rotation2(){
   //rightMotor->run(RELEASE); leftMotor->run(RELEASE);
   leftMotor->run(BACKWARD); rightMotor->run(FORWARD);
-  leftMotor->setSpeed(75);  rightMotor->setSpeed(75);
+  leftMotor->setSpeed(100);  rightMotor->setSpeed(100);
   delay(5);
 }
 
