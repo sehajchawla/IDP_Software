@@ -41,7 +41,7 @@ void complexForward(){
   else if (mine == true && red == false ){yellowReset(); updateBackDistance();}//yellow mine
   else {redReset(); updateBackDistance();} //red mine
   }
-  while (back_distance < 203){feedbackForward(); updateBackDistance();}
+  while (back_distance < 206){feedbackForward(); updateBackDistance();}
 }
 
 void returnBase(){
@@ -66,6 +66,6 @@ void returnBase(){
 
 void grandTrip(){
   getCoordinate(); updateSetdistance(); runtimeForward(10); complexForward(); goBackward(); getCoordinate();
-  while (x_coordinate < 171){rotation180(); complexForward(); goBackward();getCoordinate();}
+  while (x_coordinate < 171){rotation180(); getCoordinate(); updateSetdistance(); complexForward(); goBackward();getCoordinate();}
   returnBase(); stopMotor();
 }

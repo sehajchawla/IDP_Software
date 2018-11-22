@@ -72,8 +72,8 @@ void classifyRed();
 
 //navigation
 int absValue(int val); //return the absolute value
-//int getSidedistance();
-//int sidenoiseFilter();
+int getSidedistance();
+int sidenoiseFilter();
 int getDistance(); // get distance from the side ultrasound sensor
 void updateSetdistance();
 void updateDiffDist(); //return change of side distance
