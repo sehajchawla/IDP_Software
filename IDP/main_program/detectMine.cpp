@@ -23,10 +23,10 @@ void resetMinedetect(){
 }
 
 int getColourvalue(){
-  if (side_distance2 < 22){return 0;}
-  else if (side_distance2 < 38) {
-    int val3 = analogRead(A11); int val4 = analogRead(A12); int val5 = analogRead(A13);
-    return val3 + val4 + val5;
+  if (side_distance1 < 33){return 0;}
+  else if (side_distance1 < 41) {
+    int val4 = analogRead(A12); int val5 = analogRead(A13);
+    return val4 + val5;
   }
   else {
     int val1 = analogRead(A9); int val2 = analogRead(A10);
@@ -37,12 +37,11 @@ int getColourvalue(){
 }
 
 void updateMaxcolour(){
-  if (side_distance2 < 22) {maxcolour = 0;}
-  else if (side_distance2 < 38){
-    int val3 = analogRead(A11); int val4 = analogRead(A12);
+  if (side_distance1 < 33) {maxcolour = 0; }
+  else if (side_distance1 < 41){
+    int val4 = analogRead(A12);
     int val5 = analogRead(A13);
 
-    if (val3 > maxcolour) {maxcolour = val3;}
     if (val4 > maxcolour) {maxcolour = val4;}
     if (val5 > maxcolour) {maxcolour = val5;}
   }
@@ -64,7 +63,7 @@ void tic_mine(){minetic = getColourvalue();}
 void classifyMine(){
   minetoc = getColourvalue();
   int diff_mine = abs(minetoc - minetic);
-  if (diff_mine > 15){minebase = minetic; classifyRed();}
+  if (diff_mine > 30 && diff_mine < 100){minebase = minetic; classifyRed();}
 }
 
 void updateMinemaxdiff(){
@@ -83,10 +82,11 @@ void classifyRed(){
   Serial.print("max value: "); Serial.println(maxcolour);
   //Serial.print("minemaxdiff: "); Serial.println(minemaxdiff);
 
-  if (minemaxdiff > 200) {resetMinedetect();}
+  if (minemaxdiff > 200) {resetMinedetect(); runtimeForward(5);}
   else {
-    if (maxcolour < 102 && maxcolour > 20) {detection = true; mine = true; red = true; Serial.println("mine true");}
-    else if (maxcolour > 102 && maxcolour < 200) {detection = true;mine = true; red = false;Serial.println("mine true");}
+    if (maxcolour < 100 && maxcolour > 40) {detection = true; mine = true; red = true; Serial.println("mine true");}
+    else if (maxcolour > 100 && maxcolour < 200) {detection = true;mine = true; red = false;Serial.println("mine true");}
+    else {resetMinedetect(); }
   }
 
 }

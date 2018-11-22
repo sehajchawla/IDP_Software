@@ -72,8 +72,8 @@ void classifyRed();
 
 //navigation
 int absValue(int val); //return the absolute value
-//int getSidedistance();
-//int sidenoiseFilter();
+int getSidedistance();
+int sidenoiseFilter();
 int getDistance(); // get distance from the side ultrasound sensor
 void updateSetdistance();
 void updateDiffDist(); //return change of side distance
@@ -81,8 +81,8 @@ void feedbackSetup(int kp, int kd); //proportional control; speed = kp * diff_di
 void feedbackDiffSpeed();//this function will set the diff_speed, which is crucial for feedForward function
 //refresh rate 0.1s due to updateDiffDist()
 
-//int returnBackdistance();
-//int noiseFilter(); //filter out large noise that is not correct
+int returnBackdistance();
+int noiseFilter(); //filter out large noise that is not correct
 void updateBackDistance(); //get distance from back ultrasond sensor
 void getCoordinate();
 void reportCoordinate();

@@ -8,7 +8,7 @@ int absValue(int val){
   else {return 0;}
 }
 
-int getDistance(){
+int getSidedistance(){
   long duration; int distance_measure;
   const byte trig = 3;
   const byte echo = 2;
@@ -26,19 +26,19 @@ int getDistance(){
   return distance_measure;
 }
 
-//int sidenoiseFilter(){
-//  int temp_dist = getSidedistance();
-//  while (temp_dist > 250){temp_dist = getSidedistance();}
-//  return temp_dist;
-//}
-//
-//// get distance from the side ultrasound sensor
-//int getDistance(){
-//  int temp_dist1 = sidenoiseFilter();
-//  int temp_dist2 = sidenoiseFilter();
-//  int temp_dist3 = sidenoiseFilter();
-//  return (temp_dist1 + temp_dist2 + temp_dist3) / 3;
-//}
+int sidenoiseFilter(){
+  int temp_dist = getSidedistance();
+  while (temp_dist > 250){temp_dist = getSidedistance();}
+  return temp_dist;
+}
+
+// get distance from the side ultrasound sensor
+int getDistance(){
+  int temp_dist1 = sidenoiseFilter();
+  int temp_dist2 = sidenoiseFilter();
+  int temp_dist3 = sidenoiseFilter();
+    return (temp_dist1 + temp_dist2 + temp_dist3) / 3;
+}
 
 void updateSetdistance(){set_distance = getDistance();}
 
@@ -72,7 +72,7 @@ void feedbackSetup(int kp, int kd){
 
 void feedbackDiffSpeed(){feedbackSetup(1, 6);}
 
-void updateBackDistance(){
+int returnBackdistance(){
   long duration; int distance_measure;
   const byte trig = 5;
   const byte echo = 4;
@@ -88,21 +88,21 @@ void updateBackDistance(){
   duration = pulseIn(echo, HIGH);
   distance_measure = duration / 29 / 2;
   back_distance = distance_measure;
-//  return distance_measure;
+  return distance_measure;
 }
 
-//int noiseFilter(){
-//  int temp_dist = returnBackdistance();
-//  while (temp_dist > 230){temp_dist = returnBackdistance();}
-//  return temp_dist;
-//}
-//
-//void updateBackDistance(){
-//  int temp_dist1 = noiseFilter();
-//  int temp_dist2 = noiseFilter();
-//  int temp_dist3 = noiseFilter();
-//  back_distance = (temp_dist1 + temp_dist2 + temp_dist3) / 3;
-//}
+int noiseFilter(){
+  int temp_dist = returnBackdistance();
+  while (temp_dist > 230){temp_dist = returnBackdistance();}
+  return temp_dist;
+}
+
+void updateBackDistance(){
+  int temp_dist1 = noiseFilter();
+  int temp_dist2 = noiseFilter();
+  int temp_dist3 = noiseFilter();
+  back_distance = (temp_dist1 + temp_dist2 + temp_dist3) / 3;
+}
 
 void getCoordinate(){
   side_distance1 = getDistance();

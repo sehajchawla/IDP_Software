@@ -41,11 +41,10 @@ void complexForward(){
   else if (mine == true && red == false ){yellowReset(); updateBackDistance();}//yellow mine
   else {redReset(); updateBackDistance();} //red mine
   }
-  while (back_distance < 203){feedbackForward(); updateBackDistance();}
+  while (back_distance < 206){feedbackForward(); updateBackDistance();}
 }
 
 void returnBase(){
-  BlinkYellow(); BlinkRed();
   if (north == true){
     //north = false; //make the robot do a anticlockwise180
     centerrotation180(); north = false;
@@ -55,7 +54,7 @@ void returnBase(){
     goBackward();
   }
   rightbackward90(); updateBackDistance(); getCoordinate(); updateSetdistance();
-  while (back_distance < 197){updateBackDistance(); feedbackForward();}
+  while (back_distance < 190){updateBackDistance(); feedbackForward();}
 
   rightbackward90(); updateBackDistance();
   while (back_distance > 17) {gentleReverse();updateBackDistance();}
@@ -66,6 +65,6 @@ void returnBase(){
 
 void grandTrip(){
   getCoordinate(); updateSetdistance(); runtimeForward(10); complexForward(); goBackward(); getCoordinate();
-  while (x_coordinate < 171){rotation180(); complexForward(); goBackward();getCoordinate();}
+  while (x_coordinate < 171){rotation180(); getCoordinate(); updateSetdistance(); complexForward(); goBackward();getCoordinate();}
   returnBase(); stopMotor();
 }
