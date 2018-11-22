@@ -39,18 +39,18 @@ void loop() {
   // testdodge();
   // testdodgered();
 
-//  caliSidedistance();
+  caliSidedistance();
 //  caliBackdistance();
 //  dispLightSensor();
 //  dispLightSensor();
 
-  delay(5000);
-  grandTrip();
+//  delay(5000);
+//  grandTrip();
 //  dodgeRed();
 //  complexForward();
 //  delay(500);
 //  classifyRed();
-  stopMotor();
+//  stopMotor();
 
 
 

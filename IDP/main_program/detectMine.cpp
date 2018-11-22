@@ -23,43 +23,52 @@ void resetMinedetect(){
 }
 
 int getColourvalue(){
-  int val1 = analogRead(A9); int val2 = analogRead(A10);
-  int val3 = analogRead(A11); int val4 = analogRead(A12);
-  int val5 = analogRead(A13);
-  return val1 + val2 + val3 + val4 + val5;
+  if (side_distance2 < 22){return 0;}
+  else if (side_distance2 < 38) {
+    int val3 = analogRead(A11); int val4 = analogRead(A12); int val5 = analogRead(A13);
+    return val3 + val4 + val5;
+  }
+  else {
+    int val1 = analogRead(A9); int val2 = analogRead(A10);
+    int val3 = analogRead(A11); int val4 = analogRead(A12);
+    int val5 = analogRead(A13);
+    return val1 + val2 + val3 + val4 + val5;
+  }
 }
 
 void updateMaxcolour(){
-  int val1 = analogRead(A9); int val2 = analogRead(A10);
-  int val3 = analogRead(A11); int val4 = analogRead(A12);
-  int val5 = analogRead(A13);
+  if (side_distance2 < 22) {maxcolour = 0;}
+  else if (side_distance2 < 38){
+    int val3 = analogRead(A11); int val4 = analogRead(A12);
+    int val5 = analogRead(A13);
 
-  if (val1 > maxcolour) {maxcolour = val1;}
-  if (val2 > maxcolour) {maxcolour = val2;}
-  if (val3 > maxcolour) {maxcolour = val3;}
-  if (val4 > maxcolour) {maxcolour = val4;}
-  if (val5 > maxcolour) {maxcolour = val5;}
+    if (val3 > maxcolour) {maxcolour = val3;}
+    if (val4 > maxcolour) {maxcolour = val4;}
+    if (val5 > maxcolour) {maxcolour = val5;}
+  }
+  else {
+    int val1 = analogRead(A9); int val2 = analogRead(A10);
+    int val3 = analogRead(A11); int val4 = analogRead(A12);
+    int val5 = analogRead(A13);
+
+    if (val1 > maxcolour) {maxcolour = val1;}
+    if (val2 > maxcolour) {maxcolour = val2;}
+    if (val3 > maxcolour) {maxcolour = val3;}
+    if (val4 > maxcolour) {maxcolour = val4;}
+    if (val5 > maxcolour) {maxcolour = val5;}
+  }
 }
 
-void tic_mine(){minetic = getColourvalue(); Serial.print("t");}
+void tic_mine(){minetic = getColourvalue();}
 
 void classifyMine(){
-  red = false;
-
   minetoc = getColourvalue();
   int diff_mine = abs(minetoc - minetic);
-  if (diff_mine > 15){
-    //Serial.print("diff_mine  "); Serial.println(diff_mine);
-    //Serial.println("Perhaps a mine?");
-    //mine = true;
-    minebase = minetic;
-    classifyRed();
-  }
+  if (diff_mine > 15){minebase = minetic; classifyRed();}
 }
 
 void updateMinemaxdiff(){
   minetoc = getColourvalue();
-
   int diff_base = abs(minetoc - minebase);
   if (minemaxdiff < diff_base){minemaxdiff = diff_base;}
 }

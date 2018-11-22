@@ -162,14 +162,14 @@ void centerrotation180(){
 void detection_rotation1(){
   //rightMotor->run(RELEASE); leftMotor->run(RELEASE);
   rightMotor->run(BACKWARD); leftMotor->run(FORWARD);
-  rightMotor->setSpeed(100);  leftMotor->setSpeed(100);
+  rightMotor->setSpeed(75);  leftMotor->setSpeed(75);
   delay(5);
 }
 
 void detection_rotation2(){
   //rightMotor->run(RELEASE); leftMotor->run(RELEASE);
   leftMotor->run(BACKWARD); rightMotor->run(FORWARD);
-  leftMotor->setSpeed(100);  rightMotor->setSpeed(100);
+  leftMotor->setSpeed(75);  rightMotor->setSpeed(75);
   delay(5);
 }
 

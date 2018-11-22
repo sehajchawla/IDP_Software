@@ -36,7 +36,6 @@ void redReset(){
 
 void complexForward(){
   updateBackDistance();
-
   while (back_distance < 170){
   if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance(); Serial.print("a");} //no mine
   else if (mine == true && red == false ){yellowReset(); updateBackDistance();}//yellow mine
