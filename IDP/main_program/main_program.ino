@@ -9,6 +9,8 @@ int x_coordinate = 0; int y_coordinate = 0;
 float diff_speed;
 
 int minetic=0; int minetoc=0; int minebase=0; int minemaxdiff=0;
+int maxcolour=0; int smallmaxcolour=0;
+
 bool mine=false; bool red=false; bool detection = false;
 bool north=true;
 
@@ -37,11 +39,17 @@ void loop() {
   // testdodge();
   // testdodgered();
 
-  caliSidedistance();
-  caliBackdistance();
-  dispLightSensor();
+//  caliSidedistance();
+//  caliBackdistance();
+//  dispLightSensor();
+//  dispLightSensor();
 
+  delay(5000);
   grandTrip();
+//  dodgeRed();
+//  complexForward();
+//  delay(500);
+//  classifyRed();
   stopMotor();
 
 

@@ -7,7 +7,7 @@
 // declare constant
 #define TOLERANCE 5
 #define FULL_DEPTH 210 //cm
-#define FULL_WIDTH 188 //cm
+#define FULL_WIDTH 225 //cm
 
 // declare global variables
 extern int time_clock; extern int back_distance;
@@ -18,6 +18,7 @@ extern int x_coordinate; extern int y_coordinate;
 extern bool mine; extern bool red; extern bool detection;
 extern bool north;
 extern int minetic; extern int minetoc; extern int minebase; extern int minemaxdiff;
+extern int maxcolour; extern int smallmaxcolour;
 
 
 
@@ -46,6 +47,7 @@ void circular_rotation(); void rotation_reverse();
 void anticlockwise90(); void clockwise90();
 
 void centerrotation180();
+void detection_rotation1(); void detection_rotation2();
 void stopMotor();
 void tempStopmotor();
 void startMotor(); //used in setup() in main_program
@@ -58,7 +60,9 @@ void startBlinkRed(); //used in setup() in main_program
 void BlinkRed(); //only blink the LED
 void startBlinkYellow(); //used in setup() in main_program
 void BlinkYellow(); //only blink the LED
+void resetMinedetect();
 int getColourvalue();
+void updateMaxcolour();
 void tic_mine();
 void classifyMine();
 void updateMinemaxdiff();

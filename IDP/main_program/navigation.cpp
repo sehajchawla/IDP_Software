@@ -44,7 +44,7 @@ void updateSetdistance(){set_distance = getDistance();}
 
 void updateDiffDist(){
   side_distance1 = getDistance();
-  delay(250); //set the dt
+  delay(300); //set the dt
   side_distance2 = getDistance();
   diff_distance = side_distance2 - side_distance1;
 }
@@ -70,7 +70,7 @@ void feedbackSetup(int kp, int kd){
   else {diff_speed = 0;}
 }
 
-void feedbackDiffSpeed(){feedbackSetup(0, 6);}
+void feedbackDiffSpeed(){feedbackSetup(1, 6);}
 
 void updateBackDistance(){
   long duration; int distance_measure;

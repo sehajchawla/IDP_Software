@@ -29,7 +29,7 @@ void dispLightSensor(){
   Serial.print(val4); Serial.print(" ");
   Serial.print(val5); Serial.print("   ");
   Serial.println(sum_all);
-  //delay(200);
+  delay(200);
 }
 
 void caliLightRange(){

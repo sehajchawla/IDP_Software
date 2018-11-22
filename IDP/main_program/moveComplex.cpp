@@ -14,8 +14,8 @@ void runtimeForward(byte run_time){
 void yellowReset() {
   Serial.println("yellow mine detected");
   tempStopmotor();
-  BlinkYellow(); delay(2000); runtimeForward(15); mine = false; detection = false;
-  minetic = 0; minetoc = 0; minebase = 0; minemaxdiff = 0;
+  BlinkYellow(); delay(500); runtimeForward(5);
+  resetMinedetect();
 }
 
 void dodgeRed(){
@@ -26,25 +26,23 @@ void dodgeRed(){
 void redReset(){
   Serial.println("red mine detected");
   tempStopmotor();
-  BlinkRed(); reportCoordinate(); delay(2000);
+  BlinkRed();
+  reportCoordinate();
+  delay(2000);
   dodgeRed();
-  mine = false; red = false; detection = false;
-  minetic = 0; minetoc = 0; minebase = 0; minemaxdiff = 0;
-  //updateSetdistance();
+  resetMinedetect();
 }
 
 
 void complexForward(){
   updateBackDistance();
-  while (back_distance < 100){
-//    feedbackForward(); updateBackDistance();
-  if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance();} //no mine
-  else if (mine == true && detection == false){classifyRed();}
-  else if (mine == true && red == false && detection == true){yellowReset(); updateBackDistance();}//yellow mine
-  else if (mine == true && red == true && detection == true){redReset(); updateBackDistance();} //red mine
 
-
-}
+  while (back_distance < 170){
+  if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance(); Serial.print("a");} //no mine
+  else if (mine == true && red == false ){yellowReset(); updateBackDistance();}//yellow mine
+  else {redReset(); updateBackDistance();} //red mine
+  }
+  while (back_distance < 203){feedbackForward(); updateBackDistance();}
 }
 
 void returnBase(){
@@ -53,7 +51,9 @@ void returnBase(){
     //north = false; //make the robot do a anticlockwise180
     centerrotation180(); north = false;
     //while (back_distance < 169) {updateBackDistance(); feedbackForward();}
-    getCoordinate(); updateSetdistance(); complexForward(); goBackward();
+    getCoordinate(); updateSetdistance();
+    while (back_distance < 203){feedbackForward(); updateBackDistance();}
+    goBackward();
   }
   rightbackward90(); updateBackDistance(); getCoordinate(); updateSetdistance();
   while (back_distance < 197){updateBackDistance(); feedbackForward();}
@@ -66,7 +66,7 @@ void returnBase(){
 
 
 void grandTrip(){
-  getCoordinate(); updateSetdistance(); complexForward(); goBackward(); getCoordinate();
+  getCoordinate(); updateSetdistance(); runtimeForward(10); complexForward(); goBackward(); getCoordinate();
   while (x_coordinate < 171){rotation180(); complexForward(); goBackward();getCoordinate();}
   returnBase(); stopMotor();
 }

@@ -19,12 +19,12 @@ void feedForward(){
   // leftMotor->run(RELEASE); rightMotor->run(RELEASE); //this line is used to refresh the motor
   if (north == true){
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-    leftMotor->setSpeed(212-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+    leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
     delay(1);
   }
   else if (north == false) {
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
-    leftMotor->setSpeed(205-diff_speed);  rightMotor->setSpeed(200+diff_speed);
+    leftMotor->setSpeed(200-diff_speed);  rightMotor->setSpeed(200+diff_speed);
     delay(1);
   }
 }
@@ -127,7 +127,7 @@ void circular_rotation(){
     //Serial.print("left wheel circulating");
     leftMotor->run(FORWARD); rightMotor->run(FORWARD);
     leftMotor->setSpeed(225); rightMotor->setSpeed(100);
-    delay(6600); //set motor run time
+    delay(7600); //set motor run time
     leftMotor->run(RELEASE); rightMotor->run(RELEASE);
 
     // leftMotor->run(FORWARD); rightMotor->run(FORWARD);
@@ -139,7 +139,7 @@ void circular_rotation(){
     //Serial.print("right wheel circulating");
     rightMotor->run(FORWARD); leftMotor->run(FORWARD);
     rightMotor->setSpeed(225); leftMotor->setSpeed(85);
-    delay(6600); //set motor run time
+    delay(7600); //set motor run time
     rightMotor->run(RELEASE); leftMotor->run(RELEASE);
 
     // rightMotor->run(FORWARD); leftMotor->run(FORWARD);
@@ -157,6 +157,20 @@ void centerrotation180(){
   rightMotor->setSpeed(175);  leftMotor->setSpeed(175);
   delay(3000);
   rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+}
+
+void detection_rotation1(){
+  //rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+  rightMotor->run(BACKWARD); leftMotor->run(FORWARD);
+  rightMotor->setSpeed(100);  leftMotor->setSpeed(100);
+  delay(5);
+}
+
+void detection_rotation2(){
+  //rightMotor->run(RELEASE); leftMotor->run(RELEASE);
+  leftMotor->run(BACKWARD); rightMotor->run(FORWARD);
+  leftMotor->setSpeed(100);  rightMotor->setSpeed(100);
+  delay(5);
 }
 
 //stop the motor for good
