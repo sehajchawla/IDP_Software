@@ -63,7 +63,7 @@ void tic_mine(){minetic = getColourvalue();}
 void classifyMine(){
   minetoc = getColourvalue();
   int diff_mine = abs(minetoc - minetic);
-  if (diff_mine > 30 && diff_mine < 100){minebase = minetic; classifyRed();}
+  if (diff_mine > 25 && diff_mine < 100){minebase = minetic; classifyRed();}
 }
 
 void updateMinemaxdiff(){

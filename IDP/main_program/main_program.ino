@@ -30,7 +30,7 @@ void loop() {
   // testcoordinate();
 
   //movement test
-  // testleftwheel();
+   //testleftwheel();
   // testrightwheel();
   // testRotation();
   // testmove();
@@ -45,7 +45,7 @@ void loop() {
 //  dispLightSensor();
 
 //  delay(5000);
-grandTrip();
+ grandTrip();
 //  dodgeRed();
 //  complexForward();
 //  delay(500);

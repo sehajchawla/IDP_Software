@@ -99,6 +99,7 @@ void yellowReset(); //procedures after detect yellow mine
 void dodgeRed();
 void redReset(); //procedures after detecting red mine
 void complexForward();
+void complexForward2();
 void returnBase();
 
 void grandTrip();

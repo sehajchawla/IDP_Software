@@ -33,11 +33,20 @@ void redReset(){
   resetMinedetect();
 }
 
+void complexForward2(){
+  updateBackDistance();
+  while (back_distance < 155){
+  if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance();} //no mine
+  else if (mine == true && red == false ){yellowReset(); updateBackDistance();}//yellow mine
+  else {redReset(); updateBackDistance();} //red mine
+  }
+  while (back_distance < 206){feedbackForward(); updateBackDistance();}
+}
 
 void complexForward(){
   updateBackDistance();
   while (back_distance < 170){
-  if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance(); Serial.print("a");} //no mine
+  if (mine == false){tic_mine();feedbackForward();classifyMine();updateBackDistance();} //no mine
   else if (mine == true && red == false ){yellowReset(); updateBackDistance();}//yellow mine
   else {redReset(); updateBackDistance();} //red mine
   }
@@ -65,6 +74,7 @@ void returnBase(){
 
 void grandTrip(){
   getCoordinate(); updateSetdistance(); runtimeForward(10); complexForward(); goBackward(); getCoordinate();
+  rotation180(); getCoordinate(); updateSetdistance(); complexForward2(); goBackward();getCoordinate();
   while (x_coordinate < 171){rotation180(); getCoordinate(); updateSetdistance(); complexForward(); goBackward();getCoordinate();}
   returnBase(); stopMotor();
 }
