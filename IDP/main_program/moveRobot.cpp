@@ -50,7 +50,7 @@ void rotation180(){
     //Serial.print("rotating clockwise180");
     leftMotor->run(FORWARD); rightMotor->run(RELEASE);
     leftMotor->setSpeed(210);
-    delay(4800); //set motor run time
+    delay(5300); //set motor run time
     leftMotor->run(RELEASE); rightMotor->run(RELEASE);
     north = false; //set the parameter for the next run
   }
