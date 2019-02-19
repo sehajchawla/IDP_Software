@@ -22,8 +22,10 @@
 */
 
 // this constant won't change. It's the pin number of the sensor's output:
+
 const int trig = 8;
 const int echo = 9;
+
 
 void setup() {
   // initialize serial communication:
